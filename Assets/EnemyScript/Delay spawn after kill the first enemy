@@ -1,0 +1,27 @@
+using UnityEngine;
+
+public class GameManager : MonoBehaviour
+{
+    public GameObject enemyPrefab;
+    private bool isFirstEnemyKilled;
+
+    // Hàm này được gọi khi enemy đầu bị giết
+    public void EnemyKilled()
+    {
+        if (!isFirstEnemyKilled)
+        {
+            isFirstEnemyKilled = true;
+            SpawnEnemies();
+        }
+    }
+
+    // Hàm này sẽ spawn các enemy mới sau khi enemy đầu bị giết
+    private void SpawnEnemies()
+    {
+        // Logic spawn quái vật ở đây
+        // Ví dụ:
+        Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+        Instantiate(enemyPrefab, transform.position + new Vector3(2f, 0f, 0f), Quaternion.identity);
+        Instantiate(enemyPrefab, transform.position + new Vector3(-2f, 0f, 0f), Quaternion.identity);
+    }
+}
